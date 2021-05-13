@@ -41,7 +41,17 @@ const productList = [
   },
 ];
 
-const Products = () => (
+const addToCart = (cart, updater, product) => {
+  let isDuplicate = false;
+  cart.forEach((item) => {
+    if (item.title === product.title) isDuplicate = true;
+  });
+  if (isDuplicate) return;
+  const updatedCart = [...cart, { quantity: 1, ...product }];
+  updater(updatedCart);
+};
+
+const Products = ({ cart, updateCart }) => (
   <div className="products-container">
     <div className="products-wrapper">
       <div className="products-header">Products</div>
@@ -52,7 +62,10 @@ const Products = () => (
             <ul className="products-section_list">
               {section.list.map((product) => (
                 <li key={product.title}>
-                  <div className="products-section_card">
+                  <div
+                    className="products-section_card"
+                    onClick={() => addToCart(cart, updateCart, product)}
+                  >
                     <img
                       className="products-section_card-image"
                       src={product.image}
