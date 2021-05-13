@@ -1,0 +1,9 @@
+.products-container {
+  width: 100%;
+}
+
+.products-header {
+  background-color: plum;
+  text-align: center;
+  padding: 10px;
+}

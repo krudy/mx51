@@ -1,0 +1,12 @@
+.cart-container {
+  max-width: 400px;
+  width: 100%;
+  height: 100vh;
+  border-left: 1px black solid;
+}
+
+.cart-header {
+  background-color: plum;
+  text-align: center;
+  padding: 10px;
+}
