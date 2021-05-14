@@ -21,6 +21,7 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+  const server = require('../server');
 });
 
 app.on('window-all-closed', () => {

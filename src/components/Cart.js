@@ -24,6 +24,18 @@ const updateProductQuantity = (cart, updater, productTitle, newQuantity) => {
   updater(updatedCart);
 };
 
+const makeRequest = (cart) => {
+  if (cart.length < 1) return;
+  return fetch('/api/order', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(cart),
+  }).then((response) => response.json());
+};
+
 const Cart = ({ cart, updateCart }) => (
   <div className="cart-container">
     <div className="cart-wrapper">
@@ -80,7 +92,12 @@ const Cart = ({ cart, updateCart }) => (
             ${calculateCartTotal(cart)}
           </div>
         </div>
-        <button className="cart-footer-button">Pay</button>
+        <button
+          className="cart-footer-button"
+          onClick={() => makeRequest(cart)}
+        >
+          Pay
+        </button>
       </div>
     </div>
   </div>
